@@ -55,7 +55,7 @@ ICU 均线策略（名字是作者自己起的）的优点就是简单、稳健�
 2.研究修正标准分与未来市场收益的预测性，发现整体相关性得到了改善，尤其是左侧标准分的表现。如右图所示。<br>
 由于在一般的股票策略中，只考虑做多策略，因此左侧标准分的预测能力对于择时策略没有很大的帮助。标准分和修正标准分这两者对于右侧的预测能力没有较大区别，因此二者的收益也相差不大。<br>
 
-<img src="(https://github.com/Marcotong21/Quant/assets/125079176/83956076-07df-433d-a287-cb43263fa01d)" width="300" height="200">
+<img src="(images/1697421950649.png)" width="300" height="200">
 
 <img src="(https://github.com/Marcotong21/Quant/assets/125079176/a02f9113-615c-40aa-bf88-48c2a91405bd)" width="300" height="200">
 
