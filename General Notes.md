@@ -7,7 +7,44 @@ OBV可以被看成是一个累积量，OBV的初始值为0，在第一根Bar的�
 通俗地去理解OBV，它跟资金流很像，当价格上涨时，期间的成家量被认为是推动价格上涨的动力（类似于资金流当中的“流入”），因此OBV需要加上这部分成交量；当价格下跌的时候，期间成交量被认为是空方力量（类似于资金流当中的“流出”），因此OBV需要减去这部分成家量。OBV看绝对数量没有太大意义，各个品种间的OBV没有可比性，主要是看趋势走向，OBV持续走高，说明近期不断有资金流入，后市走强的概率也比较大。
 
 **DMI 动向指标**：
+```
+    #tr是最高价与最低价的差值、最高价与前一天收盘价的差值、以及最低价与前一天收盘价的差值中的最大值。
+    tr = pd.Series(np.vstack([df.high - df.low, (df.high - df.close.shift()).abs(),
+                              (df.low - df.close.shift()).abs()]).max(axis=0), index=df.index)
+    trz = tr.rolling(n).sum()
+    _m = pd.DataFrame()
+    #高点差和低点差
+    _m['hd'] = df.high - df.high.shift()
+    _m['ld'] = df.low.shift() - df.low
+    # 正向和负向移动的总和
+    _m['mp'] = _m.apply(lambda x: x.hd if x.hd > 0 and x.hd > x.ld else 0, axis=1)
+    _m['mm'] = _m.apply(lambda x: x.ld if x.ld > 0 and x.hd < x.ld else 0, axis=1)
+    _m['dmp'] = _m.mp.rolling(n).sum()
+    _m['dmm'] = _m.mm.rolling(n).sum()
+    _dmi = df.copy()
+    # 正负向指示器，相应移动总和与平均真实范围的比例。
+    _dmi['pdi'] = 100 * _m.dmp.div(trz)
+    _dmi['mdi'] = 100 * _m.dmm.div(trz)
+    # _dmi['adx'] = ((_dmi.mdi - _dmi.pdi).abs() / (_dmi.mdi + _dmi.pdi) * 100).rolling(m).mean()
+    # _dmi['adxr'] = (_dmi.adx + _dmi.adx.shift(m)) / 2
+    _dmi['pdi'] = _dmi['pdi'].fillna(0)
+    _dmi['mdi'] = _dmi['mdi'].fillna(0)
+    # dmi是pdi和mdi的差值, 表示正向和负向指示器之间的差异。
+    _dmi['dmi'] = _dmi['pdi'] - _dmi['mdi']
 
+    _dmi['side'] = 0
+    c = len(_dmi)
+    for i in range(c):
+        if i > 1 and i + 1 < c:
+            # 如果当前dmi值大于0且大于前一行的dmi值，买入信号
+            if _dmi['dmi'].iloc[i] > 0 and _dmi['dmi'].iloc[i] > _dmi['dmi'].iloc[i - 1]:
+                _dmi['side'].values[i] = 1
+            # 如果当前dmi值小于0且小于前一行的dmi值，卖出信号
+            if _dmi['dmi'].iloc[i] < 0 and _dmi['dmi'].iloc[i] < _dmi['dmi'].iloc[i - 1]:
+                _dmi['side'].values[i] = 0
+
+    _dmi['signal'] = _dmi['side'].shift(1).fillna(0)
+```
 **RSJ**:
 
 **Chaikin_Oscillator 柴金震荡指标**：<br>
