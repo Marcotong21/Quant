@@ -9,3 +9,8 @@ W式切割：<br>
 4. 反转因子M = M_high - M_low <br>
 ![1702981245643](https://github.com/Marcotong21/Quant/assets/125079176/03078f9f-f32f-4a7f-a81a-203e661d6f0e)
 由于M_high是强反转(rankIC=-0.082)、M_low是弱动量(rankIC=0.018)，M因子大概率会是更强的反转因子。
+
+
+
+# 20191223-开源证券-市场微观结构研究系列（1）：A股反转之力的微观来源
+
