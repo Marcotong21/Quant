@@ -52,19 +52,18 @@ def CGO(df):
 
 def CGO_signal(df):
     """
-        计算CGO指标，对其进行排序，并选择前10%的股票作为买入信号，其余作为卖出信号
+        计算CGO指标，对其进行排序，并选择前10%的股票作为卖出信号，后10%作为买入信号
         （输入为一支股票数据，实现的是择时信号；未测试多股票的选股功能）
     :param df:输入数据,index为日期，columns = ['turnover_rate','close','vol','amount']
     :return: 买-1卖1的信号
     """
-
     cgo = CGO(df)
     # 输出cgo的结果
     # cgo.dropna().to_csv("./result/cgo计算结果.csv")
-    signal = pd.Series(index=cgo.index, dtype=int)
-
-    # 对CGO因子进行排序，并选择前10%的股票作为买入信号，其余作为卖出信号
-    buy_threshold = cgo.quantile(0.1)  # 获取前10%的阈值
-    signal[cgo >= buy_threshold] = -1  # 买入信号
-    signal[cgo < buy_threshold] = 1  # 卖出信号
+    signal = pd.Series(0, index=cgo.index, dtype=int)
+    # 对CGO因子进行排序，并选择前10%的股票作为卖出信号，最小的10%买入信号
+    big_threshold = cgo.quantile(0.9)  # 获取前10%的阈值
+    small_threshold = cgo.quantile(0.1) # 获取后10%的阈值
+    signal[cgo >= big_threshold] = 1  # 卖出信号
+    signal[cgo <= small_threshold] = -1  # 买入信号
     return signal
