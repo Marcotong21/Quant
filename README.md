@@ -1,4 +1,4 @@
-# Quant
+# 量化研报
 
 部分参考了Hugo2046：https://github.com/hugo2046/QuantsPlaybook/tree/master
 || 研报  | 分类       | 备注  | 复现  |
