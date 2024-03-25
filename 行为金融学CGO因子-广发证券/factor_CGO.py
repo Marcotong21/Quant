@@ -53,7 +53,7 @@ def CGO(df):
 def CGO_signal(df):
     """
         计算CGO指标，对其进行排序，并选择前10%的股票作为买入信号，其余作为卖出信号
-        （输入为一支股票数据，未测试多股票的功能）
+        （输入为一支股票数据，实现的是择时信号；未测试多股票的选股功能）
     :param df:输入数据,index为日期，columns = ['turnover_rate','close','vol','amount']
     :return: 买-1卖1的信号
     """
