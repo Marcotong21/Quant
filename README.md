@@ -1,6 +1,8 @@
 # 量化研报
 
-部分参考了Hugo2046：https://github.com/hugo2046/QuantsPlaybook/tree/master
+有些研报只是阅读一下，有些会尝试复现，有些可能只抽取逻辑写个factor（例如因子值）
+
+部分研报参考了Hugo2046：https://github.com/hugo2046/QuantsPlaybook/tree/master
 || 研报  | 分类       | 备注  | code  |
 |----|-------|-----------|-------|-------|
 |23.10| 20170501-光大证券-择时系列报告之一：基于阻力支撑相对强度（RSRS）的市场择时  | 择时  | 值得阅读  | ✅ |
