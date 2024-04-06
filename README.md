@@ -1,6 +1,6 @@
 # 量化研报
 
-有些研报只是阅读一下，有些会尝试复现，有些可能只抽取逻辑写个factor（例如因子值）
+有些研报只是阅读，有些会尝试复现
 
 部分研报参考了Hugo2046：https://github.com/hugo2046/QuantsPlaybook/tree/master
 || 研报  | 分类       | 备注  | code  |
