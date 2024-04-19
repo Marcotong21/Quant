@@ -1,0 +1,7 @@
+                   Factor  Top 1% Mean y  Bottom 1% Mean y
+0  max_portion_orthogonal      -0.000002          0.000004
+1             midpriceRtn      -0.000206          0.000200
+2          orderImbalance       0.000081         -0.000076
+3               pricejump       0.000091          0.000027
+4                     voi       0.000176         -0.000187
+5                       z      -0.000134          0.000144

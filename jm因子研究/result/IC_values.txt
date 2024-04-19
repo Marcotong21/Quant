@@ -1,0 +1,6 @@
+midpriceRtn              -0.062134
+orderImbalance            0.079317
+pricejump                 0.042017
+max_portion_orthogonal   -0.043135
+voi                       0.076434
+z                        -0.091556
